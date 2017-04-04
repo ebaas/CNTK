@@ -19,7 +19,7 @@ sphinx-apidoc "$MODULE_DIR" -o . -f $(find "$MODULE_DIR" -type d -name tests)
 SPHINXOPTS="-W -j $(nproc)"
 if [ "$OS" == "Windows_NT" ]; then
   export SPHINXOPTS
-  ./make html
+  ./make.bat html
 else
   make html SPHINXOPTS="$SPHINXOPTS"
 fi
