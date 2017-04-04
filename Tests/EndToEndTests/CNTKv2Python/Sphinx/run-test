@@ -16,13 +16,7 @@ cd ../../../../bindings/python/doc
 
 sphinx-apidoc "$MODULE_DIR" -o . -f $(find "$MODULE_DIR" -type d -name tests)
 
-SPHINXOPTS="-W -j $(nproc)"
-if [ "$OS" == "Windows_NT" ]; then
-  export SPHINXOPTS
-  ./make.bat html
-else
-  make html SPHINXOPTS="$SPHINXOPTS"
-fi
+sphinx-build -b html -d _build/doctrees -W -j $(nproc) _build/html
 
 ERROR=0
 
