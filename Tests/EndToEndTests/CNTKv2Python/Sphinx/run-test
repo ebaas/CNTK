@@ -14,7 +14,13 @@ MODULE_DIR="$(python -c "import cntk, os, sys; sys.stdout.write(os.path.dirname(
 
 cd ../../../../bindings/python/doc
 
-sphinx-apidoc "$MODULE_DIR" -o . -f $(find "$MODULE_DIR" -type d -name tests)
+if [ "$OS" == "Windows_NT" ]; then
+  NORM_PATH="cygpath -aw --file -"
+else
+  NORM_PATH=cat
+endif
+
+sphinx-apidoc "$MODULE_DIR" -o . -f "$(find "$MODULE_DIR" -type d -name tests | $NORM_PATH)"
 
 sphinx-build -b html -d _build/doctrees -W -j $(nproc) . _build/html
 
