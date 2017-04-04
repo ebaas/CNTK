@@ -16,7 +16,7 @@ cd ../../../../bindings/python/doc
 
 sphinx-apidoc "$MODULE_DIR" -o . -f $(find "$MODULE_DIR" -type d -name tests)
 
-sphinx-build -b html -d _build/doctrees -W -j $(nproc) _build/html
+sphinx-build -b html -d _build/doctrees -W -j $(nproc) . _build/html
 
 ERROR=0
 
