@@ -16,7 +16,13 @@ cd ../../../../bindings/python/doc
 
 sphinx-apidoc "$MODULE_DIR" -o . -f $(find "$MODULE_DIR" -type d -name tests)
 
-make html SPHINXOPTS="-W -j $(nproc)"
+SPHINXOPTS="-W -j $(nproc)"
+if [ "$OS" == "Windows_NT" ]; then
+  export SPHINXOPTS
+  ./make html
+else
+  make html SPHINXOPTS="$SPHINXOPTS"
+fi
 
 ERROR=0
 
